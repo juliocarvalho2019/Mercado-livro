@@ -1,2 +1,2 @@
 # Mercado-livro
-Marketplace focado em livros - Java 11
+Marketplace focado em livros - Java 17
