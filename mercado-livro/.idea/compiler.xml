@@ -2,8 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="mercado-livro.mercado-livro.main" target="17" />
-      <module name="mercado-livro.mercado-livro.test" target="17" />
+      <module name="mercado-livro.mercado-livro.main~1" target="17" />
+      <module name="mercado-livro.mercado-livro.test~1" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
