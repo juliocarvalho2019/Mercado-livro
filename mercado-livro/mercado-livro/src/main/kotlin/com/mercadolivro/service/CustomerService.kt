@@ -20,24 +20,24 @@ class CustomerService {
         val id = if (customers.isEmpty()) {
             1
         } else {
-            customers.last().id.toInt() + 1
-        }.toString()
+            customers.last().id!!.toInt() + 1
+        }
 
         customers.add(CustumerModel(id, customer.name, customer.email))
     }
 
-    fun getCustomer(id: String): CustumerModel {
+    fun getCustomer(id: Int): CustumerModel {
         return customers.filter { it.id == id }.first()
     }
 
-    fun update(id: String, customer: PutCustomerRequest) {
+    fun update(id: Int, customer: PutCustomerRequest) {
         return customers.filter { it.id == id }.first().let {
             it.name = customer.name
             it.email = customer.email
         }
     }
 
-    fun delete(id: String) {
+    fun delete(id: Int) {
         customers.removeIf { it.id == id }
     }
 }
