@@ -2,7 +2,7 @@ package com.mercadolivro.controller
 
 import com.mercadolivro.controller.request.PostCustomerRequest
 import com.mercadolivro.controller.request.PutCustomerRequest
-import com.mercadolivro.model.CustumerModel
+import com.mercadolivro.model.CustomerModel
 import com.mercadolivro.service.CustomerService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -22,7 +22,7 @@ class CustomerController(
     val customerService: CustomerService
 ) {
     @GetMapping
-    fun getAll(@RequestParam name: String?): List<CustumerModel> {
+    fun getAll(@RequestParam name: String?): List<CustomerModel> {
         return customerService.getAll(name)
     }
 
@@ -33,7 +33,7 @@ class CustomerController(
     }
 
     @GetMapping("/{id}")
-    fun getCustomer(@PathVariable id: Int): CustumerModel {
+    fun getCustomer(@PathVariable id: Int): CustomerModel {
         return customerService.getCustomer(id)
     }
 

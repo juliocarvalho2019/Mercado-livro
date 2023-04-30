@@ -2,14 +2,14 @@ package com.mercadolivro.service
 
 import com.mercadolivro.controller.request.PostCustomerRequest
 import com.mercadolivro.controller.request.PutCustomerRequest
-import com.mercadolivro.model.CustumerModel
+import com.mercadolivro.model.CustomerModel
 import org.springframework.stereotype.Service
 @Service
 class CustomerService {
 
-    val customers = mutableListOf<CustumerModel>()
+    val customers = mutableListOf<CustomerModel>()
 
-    fun getAll(name: String?): List<CustumerModel> {
+    fun getAll(name: String?): List<CustomerModel> {
         name?.let {
             return customers.filter { it.name.contains(name, true) }
         }
@@ -23,10 +23,10 @@ class CustomerService {
             customers.last().id!!.toInt() + 1
         }
 
-        customers.add(CustumerModel(id, customer.name, customer.email))
+        customers.add(CustomerModel(id, customer.name, customer.email))
     }
 
-    fun getCustomer(id: Int): CustumerModel {
+    fun getCustomer(id: Int): CustomerModel {
         return customers.filter { it.id == id }.first()
     }
 
