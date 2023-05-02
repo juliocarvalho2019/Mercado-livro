@@ -23,7 +23,6 @@ data class BookModel(
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    var cutomer: CustomerModel? = null
-
+    var customer: CustomerModel? = null
 
 )
