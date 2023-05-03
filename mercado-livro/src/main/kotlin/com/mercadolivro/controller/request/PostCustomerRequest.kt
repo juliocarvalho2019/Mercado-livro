@@ -4,8 +4,8 @@ import javax.validation.constraints.Email
 import javax.validation.constraints.NotEmpty
 
 data class PostCustomerRequest (
-    @field:NotEmpty
+    @field:NotEmpty(message = "Campo nome não pode ser vazio!")
     var name: String,
-    @field:Email
+    @field:Email(message = "Digite um e-mail válido!")
     var email: String
 )
