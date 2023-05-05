@@ -9,5 +9,5 @@ data class PostPurchaseRequest(
     val customerId: Int,
 
     @field:NotNull
-    val bookId: Set<Int>
+    val bookIds: Set<Int>
 )
