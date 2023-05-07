@@ -19,4 +19,7 @@ data class CustomerModel(
     @Column
     @Enumerated(EnumType.STRING)
     var status: CustomerStatus,
+
+    @Column
+    val password: String
 )
