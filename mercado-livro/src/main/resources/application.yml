@@ -7,8 +7,8 @@ spring:
     username: root
     password: admin123
   jackson:
-    default-property-inclusion: non_null
+    default-property-inclusion: non_ null
 
 jwt:
-  secret: f174bb51-db81-42ee-b742-aa4df79f83b5
+  secret: 2c57cf3a-c804-4dc5-8cd4-93b8d8581948
   expiration: 999999

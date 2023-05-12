@@ -16,7 +16,8 @@ fun PostCustomerRequest.toCustomerModel(): CustomerModel {
         name = this.name,
         email = this.email,
         status = CustomerStatus.ATIVO,
-        password = this.password)
+        password = this.password
+    )
 }
 
 fun PutCustomerRequest.toCustomerModel(previousValue: CustomerModel): CustomerModel {
@@ -25,7 +26,8 @@ fun PutCustomerRequest.toCustomerModel(previousValue: CustomerModel): CustomerMo
         name = this.name,
         email = this.email,
         status = previousValue.status,
-        password = previousValue.password)
+        password = previousValue.password
+    )
 }
 
 fun PostBookRequest.toBookModel(customer: CustomerModel): BookModel {

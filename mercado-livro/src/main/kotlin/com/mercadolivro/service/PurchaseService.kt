@@ -12,11 +12,12 @@ class PurchaseService(
     private val applicationEventPublisher: ApplicationEventPublisher
 ) {
 
-    fun create(purchaseModel: PurchaseModel) {
+    fun create(purchaseModel: PurchaseModel){
         purchaseRepository.save(purchaseModel)
-        println("Disparando evento de compra...")
+
+        println("Disparando evento de compra")
         applicationEventPublisher.publishEvent(PurchaseEvent(this, purchaseModel))
-        println("Finalização do processamento...")
+        println("Finalização do processamento!")
     }
 
     fun update(purchaseModel: PurchaseModel) {

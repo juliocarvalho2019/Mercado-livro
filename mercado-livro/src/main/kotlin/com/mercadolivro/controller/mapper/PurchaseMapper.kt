@@ -20,7 +20,7 @@ class PurchaseMapper(
             customer = customer,
             books = books.toMutableList(),
             price = books.sumOf { it.price }
-            // createdAt = LocalDateTime.now()
         )
     }
+
 }

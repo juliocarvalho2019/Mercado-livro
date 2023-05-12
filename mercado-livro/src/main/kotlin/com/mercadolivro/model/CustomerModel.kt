@@ -28,5 +28,5 @@ data class CustomerModel(
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = Role::class, fetch = FetchType.EAGER)
     @CollectionTable(name = "customer_roles", joinColumns = [JoinColumn(name = "customer_id")])
-    val roles: Set<Role> = setOf()
+    var roles: Set<Role> = setOf()
 )

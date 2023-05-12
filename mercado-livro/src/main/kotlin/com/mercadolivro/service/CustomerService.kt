@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service
 
 @Service
 class CustomerService(
-    private val customerRepository: CustomerRepository,
-    private  val bookService: BookService,
+    val customerRepository: CustomerRepository,
+    private val bookService: BookService,
     private val bCrypt: BCryptPasswordEncoder
 ) {
 
@@ -32,12 +32,11 @@ class CustomerService(
     }
 
     fun findById(id: Int): CustomerModel {
-        return customerRepository.findById(id)
-            .orElseThrow { NotFoundException(Errors.ML111.message.format(id), Errors.ML111.code) }
+        return customerRepository.findById(id).orElseThrow{ NotFoundException(Errors.ML201.message.format(id), Errors.ML201.code) }
     }
 
     fun update(customer: CustomerModel) {
-        if (!customerRepository.existsById(customer.id!!)) {
+        if(!customerRepository.existsById(customer.id!!)){
             throw Exception()
         }
 
@@ -45,14 +44,11 @@ class CustomerService(
     }
 
     fun delete(id: Int) {
-//        if(!customerRepository.existsById(id)){
-//            throw Exception()
-//        }
         val customer = findById(id)
         bookService.deleteByCustomer(customer)
 
         customer.status = CustomerStatus.INATIVO
-        //    customerRepository.deleteById(id)
+
         customerRepository.save(customer)
     }
 

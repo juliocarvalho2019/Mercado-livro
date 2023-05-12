@@ -20,11 +20,10 @@ class SwaggerConfig {
         .paths(PathSelectors.any())
         .build()
 
-
         .apiInfo(
             ApiInfoBuilder()
-                .title("Mercado Livro")
-                .description("API do Mercado Livro")
-                .build()
-        )
+            .title("Mercado Livro")
+            .description("Api do Mercado Livro")
+            .build())
+
 }
