@@ -175,7 +175,7 @@ class CustomerServiceTest {
 
         customerService.delete(id)
 
-        verify (exactly = 1){customerService.findById(id)}
+        verify(exactly = 1) { customerService.findById(id) }
         verify(exactly = 1) { bookService.deleteByCustomer(fakeCustomer) }
         verify(exactly = 1) { customerRepository.save(expectedCustomer) }
     }
@@ -184,7 +184,10 @@ class CustomerServiceTest {
     fun `should throw not found exception when delete customer`() {
         val id = Random().nextInt()
 
-        every { customerService.findById(id) } throws  NotFoundException(Errors.ML201.message.format(id), Errors.ML201.code)
+        every { customerService.findById(id) } throws NotFoundException(
+            Errors.ML201.message.format(id),
+            Errors.ML201.code
+        )
 
         val error = assertThrows<NotFoundException> {
             customerService.delete(id)
@@ -193,9 +196,33 @@ class CustomerServiceTest {
         assertEquals("Customer [${id}] not exists", error.message)
         assertEquals("ML-201", error.errorCode)
 
-        verify (exactly = 1){customerService.findById(id)}
+        verify(exactly = 1) { customerService.findById(id) }
         verify(exactly = 0) { bookService.deleteByCustomer(any()) }
         verify(exactly = 0) { customerRepository.save(any()) }
+    }
+
+    @Test
+    fun `should return true when email available`() {
+        val email = "${Random().nextInt().toString()}@email.com"
+
+        every { customerRepository.existsByEmail(email) } returns false
+
+        val emailAvailable = customerService.emailAvailable(email)
+
+        assertTrue(emailAvailable)
+        verify(exactly = 1) { customerRepository.existsByEmail(email) }
+    }
+
+    @Test
+    fun `should return false email available`() {
+        val email = "${Random().nextInt().toString()}@email.com"
+
+        every { customerRepository.existsByEmail(email) } returns true
+
+        val emailAvailable = customerService.emailAvailable(email)
+
+        assertFalse(emailAvailable)
+        verify(exactly = 1) { customerRepository.existsByEmail(email) }
     }
 
 }
