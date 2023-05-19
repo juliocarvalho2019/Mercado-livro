@@ -8,7 +8,6 @@ import com.mercadolivro.model.PurchaseModel
 import java.math.BigDecimal
 import java.util.*
 
-
 fun buildCustomer(
     id: Int? = null,
     name: String = "customer name",
@@ -23,13 +22,14 @@ fun buildCustomer(
     roles = setOf(Role.CUSTOMER)
 )
 
+
 fun buildPurchase(
     id: Int? = null,
     customer: CustomerModel = buildCustomer(),
     books: MutableList<BookModel> = mutableListOf(),
     nfe: String = UUID.randomUUID().toString(),
     price: BigDecimal = BigDecimal.TEN
-) = PurchaseModel(
+) = PurchaseModel (
     id = id,
     customer = customer,
     books = books,

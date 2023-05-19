@@ -75,6 +75,5 @@ fun <T> Page<T>.toPageResponse(): PageResponse<T> {
         this.content,
         this.number,
         this.totalElements,
-        this.totalPages
-    )
+        this.totalPages)
 }

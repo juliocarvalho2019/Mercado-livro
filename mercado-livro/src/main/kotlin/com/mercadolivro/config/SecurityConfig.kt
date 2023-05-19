@@ -35,11 +35,7 @@ class SecurityConfig(
     private val PUBLIC_MATCHERS = arrayOf<String>()
 
     private val PUBLIC_POST_MATCHERS = arrayOf(
-        "/customers"
-    )
-
-    private val PUBLIC_GET_MATCHERS = arrayOf(
-        "/books"
+        "/customer"
     )
 
     private val ADMIN_MATCHERS = arrayOf(
@@ -55,7 +51,6 @@ class SecurityConfig(
         http.authorizeRequests()
             .antMatchers(*PUBLIC_MATCHERS).permitAll()
             .antMatchers(HttpMethod.POST, *PUBLIC_POST_MATCHERS).permitAll()
-            .antMatchers(HttpMethod.GET, *PUBLIC_GET_MATCHERS).permitAll()
             .antMatchers(*ADMIN_MATCHERS).hasAuthority(Role.ADMIN.description)
             .anyRequest().authenticated()
         http.addFilter(AuthenticationFilter(authenticationManager(), customerRepository, jwtUtil))
@@ -65,10 +60,8 @@ class SecurityConfig(
     }
 
     override fun configure(web: WebSecurity) {
-        web.ignoring().antMatchers(
-            "/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/**",
-            "/swagger-ui.html", "/webjars/**"
-        )
+        web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/**",
+            "/swagger-ui.html", "/webjars/**")
     }
 
     @Bean
@@ -76,7 +69,7 @@ class SecurityConfig(
         val source = UrlBasedCorsConfigurationSource()
         val config = CorsConfiguration()
         config.allowCredentials = true
-        config.addAllowedOriginPattern("*")
+        config.addAllowedOrigin("*")
         config.addAllowedHeader("*")
         config.addAllowedMethod("*")
         source.registerCorsConfiguration("/**", config)
