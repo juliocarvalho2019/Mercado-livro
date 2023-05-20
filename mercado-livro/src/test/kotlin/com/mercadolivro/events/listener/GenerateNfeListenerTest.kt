@@ -8,6 +8,7 @@ import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import org.junit.jupiter.api.Test
 import java.util.UUID
+import io.mockk.runs as runs
 
 class GenerateNfeListenerTest {
 
