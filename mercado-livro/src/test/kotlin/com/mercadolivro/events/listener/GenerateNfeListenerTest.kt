@@ -6,10 +6,13 @@ import com.mercadolivro.service.PurchaseService
 import io.mockk.*
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
+import io.mockk.junit5.MockKExtension
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import java.util.UUID
-import io.mockk.runs as runs
+import org.junit.jupiter.api.extension.ExtendWith
+import java.util.*
 
+@ExtendWith(MockKExtension::class)
 class GenerateNfeListenerTest {
 
     @MockK
@@ -32,4 +35,5 @@ class GenerateNfeListenerTest {
 
         verify(exactly = 1) { purchaseService.update(purchaseExpected) }
     }
+
 }
