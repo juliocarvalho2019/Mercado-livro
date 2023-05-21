@@ -46,6 +46,7 @@ class CustomerControllerTest {
 
         mockMvc.perform(get("/customers"))
             .andExpect(status().isOk)
+            .andExpect(jsonPath("$.length()").value(2))
             .andExpect(jsonPath("$[0].id").value(customer1.id))
             .andExpect(jsonPath("$[0].name").value(customer1.name))
             .andExpect(jsonPath("$[0].email").value(customer1.email))
@@ -54,6 +55,21 @@ class CustomerControllerTest {
             .andExpect(jsonPath("$[1].name").value(customer2.name))
             .andExpect(jsonPath("$[1].email").value(customer2.email))
             .andExpect(jsonPath("$[1].status").value(customer2.status.name))
+    }
+
+    @Test
+    fun `should filter all customers by name whe get all`() {
+        val customer1 = customerRepository.save(buildCustomer(name = "Gustavo"))
+        customerRepository.save(buildCustomer(name = "Daniel"))
+
+        mockMvc.perform(get("/customers?name=Gus"))
+            .andExpect(status().isOk)
+            .andExpect(jsonPath("$.length()").value(1))
+            .andExpect(jsonPath("$[0].id").value(customer1.id))
+            .andExpect(jsonPath("$[0].name").value(customer1.name))
+            .andExpect(jsonPath("$[0].email").value(customer1.email))
+            .andExpect(jsonPath("$[0].status").value(customer1.status.name))
+
     }
 
 }
